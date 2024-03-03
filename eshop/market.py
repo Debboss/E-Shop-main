@@ -18,7 +18,34 @@ def contactUs_page():
 
 @app.route('/subscription_plans')
 def subscriptionPlans_page():
-    return render_template('subscription_plans.html')
+    plans = [
+    {
+        'name': 'Basic Plan',
+        'price': 9.99,
+        'duration': '1 month',
+        'features': ['Basic features', 'Limited content access'],
+    },
+    {
+        'name': 'Standard Plan',
+        'price': 19.99,
+        'duration': '3 months',
+        'features': ['Standard features', 'Full content access', 'HD streaming'],
+    },
+    {
+        'name': 'Premium Plan',
+        'price': 29.99,
+        'duration': '6 months',
+        'features': ['Premium features', 'Ultra HD streaming', 'Offline downloads'],
+    },
+    {
+        'name': 'Family Plan',
+        'price': 39.99,
+        'duration': '1 year',
+        'features': ['All Premium features', 'Simultaneous streaming on multiple devices'],
+    },
+    ]
+
+    return render_template('subscription_plans.html',plans=plans )
 
 @app.route('/cart')
 def cart_page():
