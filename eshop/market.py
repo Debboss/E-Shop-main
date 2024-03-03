@@ -10,7 +10,34 @@ def home_page():
 
 @app.route('/products')
 def products_page():
-    return render_template('products.html', item_name = 'Phone')
+    products = [
+    {
+        'name': 'Product A',
+        'price': 29.99,
+        'category': 'Electronics',
+        'description': 'A high-quality electronic product with advanced features.',
+    },
+    {
+        'name': 'Product B',
+        'price': 49.99,
+        'category': 'Clothing',
+        'description': 'Stylish and comfortable clothing item for everyday wear.',
+    },
+    {
+        'name': 'Product C',
+        'price': 9.99,
+        'category': 'Home & Kitchen',
+        'description': 'Useful and practical item for your home or kitchen.',
+    },
+    {
+        'name': 'Product D',
+        'price': 99.99,
+        'category': 'Fitness',
+        'description': 'A fitness product to help you stay active and healthy.',
+    },
+    ]
+
+    return render_template('products.html', products=products)
 
 @app.route('/contact_us')
 def contactUs_page():
