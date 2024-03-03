@@ -14,7 +14,25 @@ def products_page():
 
 @app.route('/contact_us')
 def contactUs_page():
-    return render_template('contact_us.html')
+    contact_info = [
+    {
+        'department': 'Sales',
+        'email': 'sales@example.com',
+        'phone': '+1 (555) 123-4567',
+    },
+    {
+        'department': 'Support',
+        'email': 'support@example.com',
+        'phone': '+1 (555) 987-6543',
+    },
+    {
+        'department': 'General Inquiries',
+        'email': 'info@example.com',
+        'phone': '+1 (555) 789-0123',
+    },
+    ]
+
+    return render_template('contact_us.html', contact_info=contact_info)
 
 @app.route('/subscription_plans')
 def subscriptionPlans_page():
