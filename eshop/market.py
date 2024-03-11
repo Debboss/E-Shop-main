@@ -90,7 +90,7 @@ def subscriptionPlans_page():
     },
     ]
 
-    return render_template('subscription_plans.html',plans=plans )
+    return render_template('Subscription Plans/subscription_plans.html',plans=plans )
 
 @app.route('/cart')
 def cart_page():
