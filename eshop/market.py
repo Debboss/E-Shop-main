@@ -90,11 +90,21 @@ def subscriptionPlans_page():
     },
     ]
 
-    return render_template('subscription_plans.html',plans=plans )
+    return render_template('Subscription Plans/subscription_plans.html',plans=plans )
 
 @app.route('/cart')
 def cart_page():
     return render_template('cart.html')
+
+@app.route('/Login')
+def login_page():
+    return render_template('Login/login.html')
+
+@app.route('/Sign Up')
+def signUp_page():
+    return render_template('Sign Up/signUp.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
