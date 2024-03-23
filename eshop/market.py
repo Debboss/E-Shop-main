@@ -12,30 +12,25 @@ def home_page():
 def products_page():
     products = [
     {
-        'name': 'Product A',
-        'price': 29.99,
-        'category': 'Electronics',
-        'description': 'A high-quality electronic product with advanced features.',
+        'name': "Men's Shoes DN 23XX",
+        'image': 'https://via.placeholder.com/200x200?text=Shoe',
+        'price': 150.00,
+        'discount_price': 133.00,
+        'discount': '25% off',
+        'category': "Men's Shoes",
+        'description': 'New product for men with advanced features.',
     },
     {
-        'name': 'Product B',
-        'price': 49.99,
-        'category': 'Clothing',
-        'description': 'Stylish and comfortable clothing item for everyday wear.',
+        'name': "Women's Shoes DN 23XX",
+        'image': 'https://via.placeholder.com/200x200?text=Shoe2',
+        'price': 100.00,
+        'discount_price': 50.00,
+        'discount': '50% off',
+        'category': "Women's Shoes",
+        'description': 'New product for women with stylish design.',
     },
-    {
-        'name': 'Product C',
-        'price': 9.99,
-        'category': 'Home & Kitchen',
-        'description': 'Useful and practical item for your home or kitchen.',
-    },
-    {
-        'name': 'Product D',
-        'price': 99.99,
-        'category': 'Fitness',
-        'description': 'A fitness product to help you stay active and healthy.',
-    },
-    ]
+]
+    
 
     return render_template('products.html', products=products)
 
@@ -61,36 +56,33 @@ def contactUs_page():
 
     return render_template('contact_us.html', contact_info=contact_info)
 
-@app.route('/subscription_plans')
-def subscriptionPlans_page():
-    plans = [
+subscription_plans = [
     {
         'name': 'Basic Plan',
-        'price': 9.99,
+        'price': 'Free',
         'duration': '1 month',
-        'features': ['Basic features', 'Limited content access'],
+        'features': ['1 Account', 'Limited content access', 'Limited amount of items in wishlist', 'No discount on shipment fees',
+                     'Limited eligibility for giveaways'],
     },
     {
         'name': 'Standard Plan',
         'price': 19.99,
         'duration': '3 months',
-        'features': ['Standard features', 'Full content access', 'HD streaming'],
+        'features': ['Multiple Accounts', 'Full content access', 'Unlimited items in wishlist', '50% discount on shipment fees',
+                     'Eligibility for a majority of giveaways'],
     },
     {
         'name': 'Premium Plan',
         'price': 29.99,
         'duration': '6 months',
-        'features': ['Premium features', 'Ultra HD streaming', 'Offline downloads'],
+        'features': ['Unlimited Accounts', 'Full content access', 'Unlimited items in wishlist', 'No shipment fees',
+                     'Eligibility for exclusive giveaways'],
     },
-    {
-        'name': 'Family Plan',
-        'price': 39.99,
-        'duration': '1 year',
-        'features': ['All Premium features', 'Simultaneous streaming on multiple devices'],
-    },
-    ]
+]
 
-    return render_template('Subscription Plans/subscription_plans.html',plans=plans )
+@app.route('/subscription_plans')
+def subscriptionPlans_page():
+    return render_template('Subscription Plans/subscription_plans.html', plans=subscription_plans)
 
 @app.route('/cart')
 def cart_page():
