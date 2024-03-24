@@ -190,51 +190,21 @@
         </div>
         <!-- Subscription Plans Section -->
         <section>
+          {% for plan in plans %}
           <div class="pricing-card">
-            <h2>Basic</h2>
-            <h5>Basic Plan</h5>
-            <span class="price">Free</span>
-            <h5>1 Month</h5>
+            <h2>{{ plan.name }}</h2>
+            <h5>{{ plan.name }}</h5>
+            <span class="price">{{ plan.price }}</span>
+            <h5>{{ plan.duration }}</h5>
             <h3>Features:</h3>
             <ul>
-              <li>1 Account</li>
-              <li>Limited content access</li>
-              <li>Limited amount of items in wishlist</li>
-              <li>No discount on shipment fees</li>
-              <li>Limited eligibility for giveaways</li>
+              {% for feature in plan.features %}
+              <li>{{ feature }}</li>
+              {% endfor %}
             </ul>
-            <button class="btn-primary" id="subscribeBasic">Subscribe</button>
+            <button class="btn-primary" id="subscribe{{ plan.name }}">Subscribe</button>
           </div>
-          <div class="pricing-card">
-            <h2>Standard</h2>
-            <h5>Standard Plan</h5>
-            <span class="price">$19.99</span>
-            <h5>3 Months</h5>
-            <h3>Features:</h3>
-            <ul>
-              <li>Multiple Accounts</li>
-              <li>Full content access</li>
-              <li>Unlimited items in wishlist</li>
-              <li>50% discount on shipment fees</li>
-              <li>Eligibility for a majority of giveaways</li>
-            </ul>
-            <button class="btn-primary" id="subscribeStandard">Subscribe</button>
-          </div>
-          <div class="pricing-card">
-            <h2>Premium</h2>
-            <h5>Premium Plan</h5>
-            <span class="price">$39.99</span>
-            <h5>6 Months</h5>
-            <h3>Features:</h3>
-            <ul>
-              <li>Unlimited Accounts</li>
-              <li>Full content access</li>
-              <li>Unlimited items in wishlist</li>
-              <li>No shipment fees</li>
-              <li>Eligibility for all giveaways</li>
-            </ul>
-            <button class="btn-primary" id="subscribePremium">Subscribe</button>
-          </div>
+          {% endfor %}
         </section>
       </body>
     </html>
