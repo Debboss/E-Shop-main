@@ -1,6 +1,22 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import mysql.connector
+import hashlib
 
 app = Flask(__name__)
+
+# Connect to MySQL database
+def connect_to_database():
+    try:
+        connection = mysql.connector.connect(
+            host="DESKTOP-D1EGVS1-",
+            user="root",
+            database="login"  # Specify the database name here
+        )
+        return connection
+    except mysql.connector.Error as error:
+        print("Error connecting to MySQL database:", error)
+        return None
+
 
 @app.route('/')
 @app.route('/home')
@@ -90,10 +106,68 @@ def cart_page():
 
 @app.route('/Login')
 def login_page():
+    if request.method == 'POST':
+        # Retrieve form data
+        username = request.form['username']
+        password = request.form['password']
+
+        # Hash the password (you should use a proper hashing algorithm)
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+
+        # Insert data into the database
+        connection = connect_to_database()
+        if connection:
+            try:
+                cursor = connection.cursor()
+                insert_query = "INSERT INTO users (username, password) VALUES (%s, %s)"
+                insert_values = (username, hashed_password)
+                cursor.execute(insert_query, insert_values)
+                connection.commit()
+                cursor.close()
+                connection.close()
+                return "Account created successfully!"  
+            except mysql.connector.Error as error:
+                print("Error inserting data into MySQL database:", error)
+                return "Error creating account"
+        else:
+            return "Error connecting to database"
+
     return render_template('Login/login.html')
 
 @app.route('/Sign Up')
 def signUp_page():
+    if request.method == 'POST':
+        # Retrieve form data
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        repeat_password = request.form['repeat_password']
+
+        # Check if passwords match
+        if password != repeat_password:
+            return "Passwords do not match. Please try again."
+
+        # Hash the password (you should use a proper hashing algorithm)
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+
+        # Insert data into the database
+        connection = connect_to_database()
+        if connection:
+            try:
+                cursor = connection.cursor()
+                insert_query = "INSERT INTO users (username, email, password) VALUES (%s, %s, %s)"
+                insert_values = (username, email, hashed_password)
+                cursor.execute(insert_query, insert_values)
+                connection.commit()
+                cursor.close()
+                connection.close()
+                return "Account created successfully!"  # You might want to redirect to a different page
+            except mysql.connector.Error as error:
+                print("Error inserting data into MySQL database:", error)
+                return "Error creating account"
+        else:
+            return "Error connecting to database"
+
     return render_template('Sign Up/signUp.html')
 
 
