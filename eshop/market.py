@@ -10,8 +10,8 @@ def connect_to_database():
         connection = mysql.connector.connect(
             host="DESKTOP-D1EGVS1-",
             user="root",
-            database="login",  
-            database="sign_up"
+            login_database="login",  
+            signup_database="sign_up"
         )
         return connection
     except mysql.connector.Error as error:
