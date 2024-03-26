@@ -10,7 +10,7 @@ def connect_to_database():
         connection = mysql.connector.connect(
             host="DESKTOP-D1EGVS1-",
             user="root",
-            database="login"  
+            database="login",  
             database="sign_up"
         )
         return connection
